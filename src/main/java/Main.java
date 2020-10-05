@@ -24,5 +24,7 @@ public class Main {
                 .collect(Collectors.toList());
 
 
+        list.sort((weapon1,weapon2) -> Integer.compare(weapon1.getDamage(),weapon2.getDamage()));
+        
     }
 }
