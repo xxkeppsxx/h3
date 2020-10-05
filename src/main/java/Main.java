@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) throws IOException {
         List<Weapon> list = new LinkedList<>();
-        Main m= new Main();
+        Main m = new Main();
+
 
         list = Files.lines(new File("weapons.csv").toPath())
                 .skip(1)
@@ -25,14 +26,34 @@ public class Main {
                         Integer.parseInt(s[6])
                 ))
                 .collect(Collectors.toList());
+
+        list.forEach(System.out::println);
+
         m.sortbydamage(list);
 
+        m.sortbyalphabet(list);
 
     }
+
+
     public void sortbydamage(List<Weapon> plist) {
         plist.sort((weapon1, weapon2) -> Integer.compare(weapon1.getDamage(), weapon2.getDamage()));
     }
-    public void sortbyalphabet(List<Weapon> plist){
+
+    public void sortbyalphabet(List<Weapon> plist) {
+        plist.sort((weapon1, weapon2) -> {
+            int damageTypeCompare = weapon1.getDamageType().compareTo(weapon1.getDamageType());
+            int compareCombatType = weapon1.getCombatType().compareTo(weapon2.getCombatType());
+            if (compareCombatType == 0) {
+                if (damageTypeCompare == 0) {
+                    return weapon1.getName().compareTo(weapon2.getName());
+                } else {
+                    return damageTypeCompare;
+                }
+            } else {
+                return compareCombatType;
+            }
+        });
 
     }
 }
