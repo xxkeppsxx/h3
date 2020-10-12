@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Weapon {
 
@@ -55,6 +56,18 @@ public class Weapon {
     public String toString() {
         return
                 name + ", " + combatType + ", " + damageType + ", " + damage + ", " + speed + ", " + minStrength + "," + value;
+    }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.name);
+        hash = 11 * hash + Objects.hashCode(this.combatType);
+        hash = 11 * hash + Objects.hashCode(this.damageType);
+        hash = 11 * hash + this.damage;
+        hash = 11 * hash + this.speed;
+        hash = 11 * hash + this.minStrength;
+        hash = 11 * hash + this.value;
+        return hash;
     }
 }
 
