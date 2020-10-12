@@ -33,14 +33,27 @@ public class Main {
 
         m.sortbyalphabet(list);
 
+        Printable printable = w ->{
+
+            w.forEach(weap -> System.out.println(weap.toString()));
+        };
+
+
+    printable.print(list);
+
+
+    Printable printable2 = w ->{
+    
+    };
     }
 
 
-    public void sortbydamage(List<Weapon> plist) {
-        plist.sort((weapon1, weapon2) -> Integer.compare(weapon1.getDamage(), weapon2.getDamage()));
+    public List<Weapon> sortbydamage(List<Weapon> plist) {
+       plist.sort((weapon1, weapon2) -> Integer.compare(weapon1.getDamage(), weapon2.getDamage()));
+       return plist;
     }
 
-    public void sortbyalphabet(List<Weapon> plist) {
+    public List<Weapon> sortbyalphabet(List<Weapon> plist) {
         plist.sort((weapon1, weapon2) -> {
             int damageTypeCompare = weapon1.getDamageType().compareTo(weapon1.getDamageType());
             int compareCombatType = weapon1.getCombatType().compareTo(weapon2.getCombatType());
@@ -54,6 +67,7 @@ public class Main {
                 return compareCombatType;
             }
         });
-
+    return plist;
     }
+
 }
