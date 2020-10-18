@@ -59,15 +59,14 @@ public class Streams {
     }
     
     public Weapon findWeaponWithLongestName(List<Weapon> weapons) {
-        return weapons.stream().max(Comparator.comparing(Weapon::getCombatType)).orElse(null);
-    }
+        return weapons.stream().max((w1,w2) -> w1.getName().length() - w2.getName().length()).orElse(null);
     
     public List<String> toNameList(List<Weapon> weapons) {
-
+g
     }
     
     public int[] toSpeedArray(List<Weapon> weapons) {
-        weapons.stream().;
+        weapons.stream().
     }
     
     public int sumUpValues(List<Weapon> weapons) {
