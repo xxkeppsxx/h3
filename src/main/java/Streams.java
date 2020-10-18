@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,42 +15,55 @@ public class Streams {
         }
     }
 
+    String leer = "";
+    String s ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW";
+    String [] sarr = new String[10];
+
+    public void stringarr(){
+        for (int i = 0; i < sarr.length; i++) {
+
+            for (int j = 0; j <10; j++) {
+                leer += s.charAt((int) (Math.random()*s.length()));
+
+            }
+            sarr[i]=leer;
+        }
 
 
+
+
+
+    }
 
     public double average(int[] numbers) {
-        Arrays.stream(numbers).average();
+        return Arrays.stream(numbers).average().getAsDouble();
 
     }
     
     public List<String> upperCase(String[] strings) {
-        List <String> list = new ArrayList<>();
-         //Arrays.stream(strings).forEach(String::toUpperCase);
-       list.add( Arrays.stream(strings).toString().toUpperCase());
-         return list;
+
+         return Arrays.stream(strings).map(s->s.toUpperCase()).collect(Collectors.toList());
+
     }
     
     public Weapon findWeaponWithLowestDamage(List<Weapon> weapons) {
-
+        return weapons.stream().min(Comparator.comparing(Weapon::getDamage)).orElse(null);
     }
     
     public Weapon findWeaponWithHighestStrength(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().max(Comparator.comparing(Weapon::getDamage)).orElse(null);
     }
     
     public List<Weapon> collectMissileWeapons(List<Weapon> weapons) {
-        List <Weapon> list = new ArrayList<>();
-        list.add((Weapon) weapons.stream().filter(DamageType.MISSILE));
+      return weapons.stream().filter(w->w.getDamageType().equals(DamageType.MISSILE)).collect(Collectors.toList());
     }
     
     public Weapon findWeaponWithLongestName(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().max(Comparator.comparing(Weapon::getCombatType)).orElse(null);
     }
     
     public List<String> toNameList(List<Weapon> weapons) {
-        List <String> list = new ArrayList<>();
 
-       list.add(weapons.stream().toString());
     }
     
     public int[] toSpeedArray(List<Weapon> weapons) {
@@ -57,11 +71,11 @@ public class Streams {
     }
     
     public int sumUpValues(List<Weapon> weapons) {
-    weapons.stream().
+    weapons.stream().reduce(Integer::sum);
     }
     
     public long sumUpHashCodes(List<Weapon> weapons) {
-        weapons.stream()
+        weapons.stream().
     }
     
     public List<Weapon> removeDuplicates(List<Weapon> weapons) {

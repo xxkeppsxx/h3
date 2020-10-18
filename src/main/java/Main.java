@@ -42,10 +42,26 @@ public class Main {
     printable.print(list);
 
 
-    Printable printable2 = w ->{
-    
-    };
-    }
+        System.out.printf("%-20s", " | " + "Name");
+        System.out.printf("%-9s", " | " + "CombatType");
+        System.out.printf("%-11s ", " | " + "DamageType");
+        System.out.printf("%-6s", " | " + "Damage");
+        System.out.printf("%-3s", " | " + "Speed");
+        System.out.printf("%-6s", " | " + "Lenghth");
+        System.out.printf("%-7s %n", " | " + "Value");
+        System.out.println("+---------------------------------------------------------------------------------+");
+
+        Printable tablePrint = (w) -> w.forEach(t ->{
+            System.out.printf("%-20s", " | " + t.getName());
+            System.out.printf("%-13s", " | " + t.getCombatType());
+            System.out.printf("%-13s ", " | " + t.getDamageType());
+            System.out.printf("%-9s", " | " + t.getDamage());
+            System.out.printf("%-8s", " | " + t.getSpeed());
+            System.out.printf("%-10s", " | " + t.getMinStrength());
+            System.out.printf("%-7s %n", " | " + t.getValue());
+            System.out.println("+---------------------------------------------------------------------------------+");
+        });
+        tablePrint.print(l);
 
 
     public List<Weapon> sortbydamage(List<Weapon> plist) {
